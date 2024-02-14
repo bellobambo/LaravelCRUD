@@ -8,16 +8,36 @@
 </head>
 
 <body>
-    <div style="border: 3px solid gray">
-        <h2>Register</h2>
-        <form action="/register" method="POST">
+    @auth
+        <p>Dashboard</p>
+        <form action="/logout" method="POST">
             @csrf
-            <input type="text" name="name">
-            <input type="text" name="email">
-            <input type="password" name="password">
-            <button>Register</button>
+            <button>logout</button>
         </form>
-    </div>
+    @else
+        <div style="border: 3px solid gray">
+            <h2>Register</h2>
+            <form action="/register" method="POST">
+                @csrf
+                <input type="text" name="name" required>
+                <input type="text" name="email" required>
+                <input type="password" name="password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div style="border: 3px solid gray">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                @csrf
+                <input type="text" name="loginname" required>
+                <input type="password" name="loginpassword" required>
+                <button type="submit">Login</button>
+            </form>
+            @error('loginname')
+                <div>{{ $message }}</div>
+            @enderror
+        </div>
+    @endauth
 </body>
 
 </html>
