@@ -32,3 +32,6 @@ Route::post('/login', [UserController::class, 'login']);
 
 
 Route::post('/create-post', [PostController::class, 'create_post']);
+Route::get('/edit-post/{post}', [PostController::class, 'showEditScreen']);
+Route::put('/edit-post/{post}', [PostController::class, 'update']);
+Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
